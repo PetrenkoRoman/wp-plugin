@@ -1,0 +1,204 @@
+$dark-grey: #5A5A5A
+$gray: #AEAEAE
+$light-gray: #F2F3F5
+$main-red: #EB0033
+$clear-white: #fff
+
+@function darker($color, $tone)
+  $adjust: -16*$tone
+  @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust)
+
+
+#payment
+  //background-color: $light-gray
+  //min-height: 800px
+  font-family: 'Roboto', sans-serif
+  color: $dark-grey
+  .title
+    color: $main-red
+  .card
+    //height: 360px
+    background-color: $clear-white
+    border: 1px solid $light-gray
+    border-radius: 15px
+    padding: 20px
+    box-shadow: 0 0 10px $gray
+
+  .container
+    max-width: 1200px
+    width: 100%
+    padding: 15px
+    margin: 0 auto
+
+  .flex-wrap
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    column-gap: 20px
+    row-gap: 20px
+
+  .btn
+    text-align: center
+    display: inline-block
+    max-width: 200px
+    width: 100%
+    font-size: 1.25em
+    font-weight: 700
+    line-height: 24px
+    //color: $gray
+    padding: 12px
+    text-decoration: none
+    border-radius: 5px
+    text-transform: uppercase
+    box-shadow: none
+    &-grey
+      background: $light-gray
+      margin-top: auto
+      font-size: 0.8em
+      color: $gray
+    &-grey:hover
+      background: darker($light-gray, 2)
+      color: darker($gray, 2)
+    &-red
+      background: $main-red
+      margin-top: auto
+      font-size: 1em
+      color: $clear-white
+      max-width: 90%
+      align-self: center
+    &-red:hover
+      background: darker($main-red, 2)
+      //color: darker($clear-white, 2)
+
+  #card-list
+    display: flex
+    flex-wrap: wrap
+    flex: 2 0 480px
+    flex-flow: column
+    justify-content: space-between
+    row-gap: 15px
+
+    .check-block
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin-top: 15px
+      .quantity-block
+        display: flex
+        align-items: center
+        .quantity
+          border: none
+          width: 20px
+          text-align: center
+          color: $dark-grey
+          padding: 0
+        #minus, #plus
+          display: inline-block
+          background: $light-gray
+          width: 20px
+          text-align: center
+          color: $dark-grey
+          cursor: pointer
+
+    .checkbox
+      position: relative
+      .checkbox__input
+        appearance: none
+        position: absolute
+        opacity: 0
+        z-index: -1
+      .checkbox__label
+        color: #000
+        padding-left: 25px
+        cursor: pointer
+        font-weight: bold
+        .subtitle
+          display: inline-block
+          //padding-left: 25px
+          color: $dark-grey
+          font-weight: 400
+      .checkbox__label:before
+        content: ''
+        display: block
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        border: 1px solid $dark-grey
+        background-color: $light-gray
+        position: absolute
+        top: 10px
+        left: 0
+        z-index: 1
+      .checkbox__label:after
+        content: ''
+        display: block
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        border: 1px solid $dark-grey
+        background-color: $light-gray
+        background: url("../img/check.png") no-repeat center
+        background-size: 12px 12px
+        position: absolute
+        top: 10px
+        left: 0
+        opacity: 0
+        z-index: 2
+      .checkbox__input:checked + .checkbox__label:after
+        opacity: 1
+
+  #card-summary
+    display: flex
+    flex-flow: column
+    flex: 1 0 320px
+    .summary-block, .total-block
+      display: flex
+      justify-content: space-between
+    .summary-block
+      position: relative
+    .summary-block:nth-child(3):after
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      height: 1px
+      content: ""
+      background-color: $gray
+    .total-block
+      align-items: center
+      .total-price
+        text-transform: uppercase
+        color: $main-red
+        font-size: 26px
+        font-weight: bold
+    .btn-grey
+      display: none
+
+
+
+@media screen and (max-width: 597px)
+  #payment
+    #card-list
+      flex: auto
+    #card-summary
+      flex: auto
+
+@media screen and (max-width: 400px)
+  #payment
+    .btn
+      &-grey
+        display: none
+    .checkbox
+      .checkbox__label
+        .subtitle
+          max-width: 145px
+          width: 100%
+
+    #card-summary
+      .btn-grey
+        display: block
+        background-color: $clear-white
+        margin: 0 auto
+        margin-top: 20px
+
